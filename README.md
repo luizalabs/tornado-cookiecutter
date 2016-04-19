@@ -74,3 +74,9 @@ Showing message when starting and stoping the server
     Starting server on http://127.0.0.1:8888
     ^C
     Stopping server.
+=======
+
+## TODO
+
+- pytest
+- swagger
