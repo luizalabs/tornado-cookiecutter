@@ -1,0 +1,15 @@
+- name: update apt cache packages
+  apt: update_cache=yes
+  sudo: yes
+
+- name: install build_essentials
+  apt: name=build-essential state=present
+  sudo: yes
+
+- name: install git
+  apt: name=- git state=latest
+  sudo: yes
+
+- name: ensure freetds-dev library is installed
+  apt: name=freetds-dev state=latest install_recommends=yes
+  sudo: yes

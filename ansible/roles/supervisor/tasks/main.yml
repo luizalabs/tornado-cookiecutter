@@ -1,0 +1,12 @@
+- name: ensure supervisor is installed
+  apt: name=supervisor state=latest
+  become: yes
+
+- name: create supervisord config
+  template: src=supervisord.cnf.j2 dest=/etc/supervisor/conf.d/
+
+- name: restart supervisord
+  service: name={{ item.name }} state=restarted
+
+- name: start app
+  supervisorctl: name={{ item.name }} state=started

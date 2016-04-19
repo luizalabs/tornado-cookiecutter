@@ -1,0 +1,6 @@
+- name: ensure nginx are installed
+  apt: name=nginx state=latest install_recommends=yes
+  sudo: true
+
+- name: copy nginx.cnf to /etc/nginx/
+  template: name=nginx.cnf.j2 dest=/atc/nginx/conf.d/{{ item.name }}.conf mode=0600
