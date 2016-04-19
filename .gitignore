@@ -1,16 +1,13 @@
-<<<<<<< HEAD
 *.py[cod]
 =======
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
->>>>>>> 4a3052ba58dcf8383508e9e589bb70bac17c6a2e
 
 # C extensions
 *.so
 
-<<<<<<< HEAD
 # Packages
 *.egg
 *.egg-info
@@ -42,7 +39,7 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
-=======
+
 # Distribution / packaging
 .Python
 env/
@@ -97,4 +94,3 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
->>>>>>> 4a3052ba58dcf8383508e9e589bb70bac17c6a2e

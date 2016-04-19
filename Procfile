@@ -1,1 +1,1 @@
-web: python manage.py webserver
+web: python app/{{ project_name }}/wsgi.py

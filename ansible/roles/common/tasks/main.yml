@@ -2,12 +2,12 @@
   apt: update_cache=yes
   sudo: yes
 
-- name: install build_essentials
+- name: install GCC and other essentials packages
   apt: name=build-essential state=present
   sudo: yes
 
 - name: install git
-  apt: name=- git state=latest
+  apt: name=git state=latest
   sudo: yes
 
 - name: ensure freetds-dev library is installed

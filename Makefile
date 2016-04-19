@@ -1,5 +1,5 @@
 install-dev:
-	@pip install -r requirements.txt
+    @pip install -r app/requirements/requirements.txt
 
 runserver:
-	@python app/manage.py runserver
+    @python app/manage.py runserver
