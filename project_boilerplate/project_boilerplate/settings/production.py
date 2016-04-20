@@ -1,4 +1,4 @@
-from base import *
+from .base import settings
 
 settings['debug'] = False
 

@@ -1,4 +1,4 @@
-- hosts: development
+- hosts: localhost
 - roles:
   - common
   - python

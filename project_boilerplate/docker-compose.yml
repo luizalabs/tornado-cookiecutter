@@ -1,0 +1,9 @@
+tornado:
+    build: ./compose/tornado
+    volumes:
+        - ".:/app"
+    port:
+        - "8888:8888"
+
+nginx:
+    build: ./compose/nginx
