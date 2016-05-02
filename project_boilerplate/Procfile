@@ -1,1 +1,1 @@
-web: python project_boilerplate/wsgi.py
+web: python app/project_boilerplate/wsgi.py

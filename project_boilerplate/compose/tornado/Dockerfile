@@ -1,13 +1,9 @@
-FROM python:3.5
+FROM python:3.5.1
 
-ENV PYTHONUNBUFFERED 1
+# ENV PYTHONUNBUFFERED 1
 
-COPY ./requirements /requirements
+COPY ./app/requirements /app/requirements
 
-RUN pip install -r requirements.txt
-
-COPY . /app
-
-WORKDIR /app
+RUN pip install -r /app/requirements/production.txt
 
 ENTRYPOINT ["entrypoint.sh"]

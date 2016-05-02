@@ -1,4 +1,4 @@
-- hosts: sandbox
+- hosts: inventory/staging
 - roles:
   - common
   - python

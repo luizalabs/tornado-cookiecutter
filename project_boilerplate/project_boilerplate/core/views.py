@@ -1,20 +1,8 @@
 import tornado.web
-from tornado import gen
-from restless.tnd import TornadoResource
 
 
-class HomeHandler(TornadoResource):
+class HomeHandler(tornado.web.RequestHandler):
 
-    @gen.coroutine
-    def list(self):
-        return []
-
-
-class HealthcheckHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("Healthcheck")
+        self.write("Hello world")
 
-
-class TestHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.write("Test")

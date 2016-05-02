@@ -2,7 +2,7 @@ tornado:
     build: ./compose/tornado
     volumes:
         - ".:/app"
-    port:
+    ports:
         - "8888:8888"
 
 nginx:

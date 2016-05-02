@@ -1,4 +1,4 @@
-- hosts: production
+- hosts: inventory/production
 - roles:
   - common
   - python

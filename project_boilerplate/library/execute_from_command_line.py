@@ -1,6 +1,6 @@
-import lib.server
-# import lib.shell
-import lib.test
+import contrib.server
+# import contrib.shell
+import contrib.test
 
 from tornado.options import define
 from tornado.options import options
@@ -24,13 +24,13 @@ class BaseCommands(object):
         return getattr(self, self.command_arg)
 
     def runserver(self):
-        lib.server.run()
+        contrib.server.run()
 
     # def shell(self):
-    #     lib.shell.run()
+    #     contrib.shell.run()
 
     def test(self):
-        lib.test.run()
+        contrib.test.run()
 
 
 class Management(object):

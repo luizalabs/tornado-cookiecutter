@@ -5,7 +5,7 @@ import readline
 from pprint import pprint
 
 def make_shell():
-    from lib.server import *
+    from contrib.server import *
 
     os.environ['PYTHONINSPECT'] = 'True'
 
