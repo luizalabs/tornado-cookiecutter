@@ -15,3 +15,4 @@ def include(prefix, module_path):
             pattern = r"%s%s" % (prefix, pattern)
         final_urls.append(URLSpec(pattern, url.handler_class, kwargs=url.kwargs, name=url.name))
     return final_urls
+

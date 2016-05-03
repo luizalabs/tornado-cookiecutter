@@ -1,5 +1,5 @@
 app:
-    build: ./composeapp/
+    build: ./compose/app/
     volumes:
         - "./app:/app"
     ports:

@@ -1,5 +1,13 @@
 from .base import settings
 
 settings['DATABASES'] = {
-    'default': 'mssql+pymssql://devfcamara:DEVFCAMARA@s500sqldev01.magazineluiza.intranet:1433/'
+    'default': {
+        'ENGINE': 'mssql+pymssql',
+        'HOST': 's500devsql01.magazineluiza.intranet',
+        'NAME': 'dbmagazine_xp',
+        'USER': 'devfcamara',
+        'PASSWORD': 'DEVFCAMARA',
+        'PORT': 1433
+    }
 }
+

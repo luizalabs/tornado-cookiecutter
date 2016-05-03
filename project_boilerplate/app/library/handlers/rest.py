@@ -48,6 +48,9 @@ class MetaMixin(object):
 class RestHandler(MetaMixin, RestlessResource):
     links = None
 
+    def initialize(self):
+        print(self.headers)
+
     def default_return(self, data):
         """ Default object return
         """
@@ -71,4 +74,5 @@ class RestHandler(MetaMixin, RestlessResource):
 
     def serialize_detail(self, data):
         return self.default_return(data)
+
 
