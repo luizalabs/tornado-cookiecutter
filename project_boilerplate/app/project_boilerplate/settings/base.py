@@ -3,14 +3,12 @@ import tornado
 import tornado.options
 import os.path
 
-from tornado.options import define
+import logging
 
 
-path = lambda root,*a: os.path.join(root, *a)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-define("port", default=8888, help="run on the given port", type=int)
-tornado.options.parse_command_line()
+path = lambda root,*a: os.path.join(root, *a)
 
 settings = {
     # debug: If True the application runs in debug mode
@@ -65,3 +63,4 @@ settings = {
     # static_handler_args, if set, should be a dictionary of keyword arguments
     # to be passed to the handler's initialize method.
 }
+

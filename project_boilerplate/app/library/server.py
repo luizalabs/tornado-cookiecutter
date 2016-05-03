@@ -3,9 +3,14 @@ import sys
 import tornado.ioloop
 import tornado.web
 from tornado.options import options
+from tornado.options import define
 
-from project_boilerplate.urls import urls
 from project_boilerplate.settings import settings
+from project_boilerplate.urls import urls
+
+
+define("port", default=8888, help="run on the given port", type=int)
+tornado.options.parse_command_line()
 
 
 class Application(tornado.web.Application):

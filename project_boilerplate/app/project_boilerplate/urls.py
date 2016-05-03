@@ -1,6 +1,6 @@
 from tornado import web
 from tornado.web import URLSpec as url
-from contrib.urls import include
+from library.urls import include
 
 from project_boilerplate.settings import settings
 

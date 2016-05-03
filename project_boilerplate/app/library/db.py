@@ -15,11 +15,11 @@ class Engine(object):
     def parse_engines(self, databases):
         return {k: create_engine(v) for v, k in databases}
 
-    def using(self, database):
+    def using(self, engine):
         try:
-            self.engine = self.databases[database]
+            self.engine = self.databases[engine]
         except ValueError:
-            raise ValueError('Engine not founf')
+            raise ValueError('Engine not found')
 
 
 class Base(Engine):
@@ -42,3 +42,4 @@ class Base(Engine):
 
 
 Model = declarative_base(cls=Base)
+

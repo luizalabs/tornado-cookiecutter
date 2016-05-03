@@ -1,7 +1,7 @@
-tornado:
-    build: ./compose/tornado
+app:
+    build: ./composeapp/
     volumes:
-        - ".:/app"
+        - "./app:/app"
     ports:
         - "8888:8888"
 

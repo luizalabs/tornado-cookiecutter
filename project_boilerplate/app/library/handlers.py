@@ -1,7 +1,6 @@
 import socket
 
-from contrib import app
-from contrib import settings
+from library import app
 
 from restless.tnd import TornadoResource as RestlessResource
 from restless.exceptions import MethodNotImplemented 

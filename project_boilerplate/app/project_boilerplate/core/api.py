@@ -1,5 +1,5 @@
 from tornado import gen
-from contrib.handlers import RestHandler 
+from library.handlers import RestHandler 
 from restless.preparers import FieldsPreparer
 
 

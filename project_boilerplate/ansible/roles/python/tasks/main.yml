@@ -7,9 +7,6 @@
   sudo: yes
 
 - name: ensure python3-pip is installed
-  pip3: name=python3-pip state=latest
+  apt: name=python3-pip state=latest
   sudo: yes
 
-- name: ensure python virtualenv is installed
-  pip3: name=virtualenv state=latest
-  sudo: yes
