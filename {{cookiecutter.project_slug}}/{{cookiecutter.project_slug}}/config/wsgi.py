@@ -1,7 +1,6 @@
 import os
-import lib.server
+import contrib.server
 
 os.environ['TORNADO_SETTINGS_MODULE'] = 'settings.production'
 
-lib.server.get_server_application()
-
+contrib.server.get_server_application()

@@ -1,7 +1,9 @@
 from .base import settings
 
 
-DATABASES = {
-    'default': 'sqlite://:memory:'
+settings['DATABASES'] = {
+    'default': {
+        'ENGINE': 'sqlite',
+        'NAME': ''
+    }
 }
-

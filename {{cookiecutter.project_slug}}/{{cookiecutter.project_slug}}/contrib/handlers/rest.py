@@ -3,7 +3,7 @@ import socket
 from contrib import app_info
 
 from restless.tnd import TornadoResource as RestlessResource
-from restless.exceptions import MethodNotImplemented 
+from restless.exceptions import MethodNotImplemented
 
 
 class PaginationMixin(object):
@@ -40,7 +40,7 @@ class MetaMixin(object):
             'name': app_info('name'),
             'server': socket.gethostbyname(socket.gethostname()),
             'version': app_info('version'),
-            'recordCount': count 
+            'recordCount': count
         }
         return meta
 
@@ -56,7 +56,7 @@ class RestHandler(MetaMixin, RestlessResource):
         """
         response = {}
 
-        if isinstance(data, list): 
+        if isinstance(data, list):
             response['objects'] = data
         else:
             response['object'] = self.preparer.prepare(data)
@@ -64,7 +64,7 @@ class RestHandler(MetaMixin, RestlessResource):
         if self.meta:
             response['meta'] = self.meta_context(data)
 
-        if self.links and isinstance(links, dict):
+        if self.links and isinstance(self.links, dict):
             response['links'] = self.links
 
         return response
@@ -74,5 +74,3 @@ class RestHandler(MetaMixin, RestlessResource):
 
     def serialize_detail(self, data):
         return self.default_return(data)
-
-

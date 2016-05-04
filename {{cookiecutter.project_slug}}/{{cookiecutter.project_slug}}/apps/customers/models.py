@@ -7,4 +7,3 @@ class Customer(Model):
 
     id = Column('id_cliente', Integer, primary_key=True)
     name = Column('nome_razao_cliente', String(60))
-

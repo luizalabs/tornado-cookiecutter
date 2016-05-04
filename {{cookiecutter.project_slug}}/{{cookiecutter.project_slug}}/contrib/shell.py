@@ -4,10 +4,12 @@ import os
 import readline
 from pprint import pprint
 
+
 def make_shell():
     from contrib.server import *
 
     os.environ['PYTHONINSPECT'] = 'True'
+
 
 def run():
     print('Loading...')

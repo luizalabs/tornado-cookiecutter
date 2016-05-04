@@ -1,7 +1,5 @@
 import pytest
 
-from tornado.testing import AsyncHTTPTestCase, gen_test
-
 
 @pytest.mark.gen_test
 def test_root_url(http_client, base_url):

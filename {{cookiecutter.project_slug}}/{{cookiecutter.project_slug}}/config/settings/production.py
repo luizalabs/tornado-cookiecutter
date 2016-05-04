@@ -1,7 +1,13 @@
+import os
 from .base import settings
 
-settings['debug'] = False
-
-DATABASES = {
-    'default': 'mssql+pymssql://loja200:loja200@s500sqldev01.magazineluiza.intranet:1433/'
+settings['DATABASES'] = {
+    'default': {
+        'ENGINE': 'mssql+pymssql',
+        'HOST': os.getenv('DEFAULT_HOST'),
+        'NAME': os.getenv('DEFAULT_NAME'),
+        'USER': os.getenv('DEFAULT_USER'),
+        'PASSWORD': os.getenv('DEFAULT_PASSWORD'),
+        'PORT': os.getenv('DEFAULT_PORT')
+    }
 }

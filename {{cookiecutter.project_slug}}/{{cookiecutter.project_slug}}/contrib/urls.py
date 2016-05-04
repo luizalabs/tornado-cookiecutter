@@ -1,7 +1,9 @@
 from tornado.web import URLSpec
 
+
 def unpack(first, *rest):
     return first, rest
+
 
 def include(prefix, module_path):
     module = __import__(module_path, globals(), locals(), fromlist=["*"])
@@ -13,6 +15,7 @@ def include(prefix, module_path):
             pattern = r"%s%s" % (prefix, pattern[1:])
         else:
             pattern = r"%s%s" % (prefix, pattern)
-        final_urls.append(URLSpec(pattern, url.handler_class, kwargs=url.kwargs, name=url.name))
+        final_urls.append(URLSpec(
+            pattern, url.handler_class, kwargs=url.kwargs, name=url.name)
+        )
     return final_urls
-

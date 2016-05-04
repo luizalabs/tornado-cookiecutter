@@ -1,18 +1,15 @@
-import logging
-import tornado
-import tornado.options
 import os.path
 
-import logging
-
-from dotenv import load_dotenv 
+from dotenv import load_dotenv
 
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = os.path.dirname(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+)
 PROJECT_DIR = os.path.dirname(BASE_DIR)
 
 # load environment
-dotenv_path = os.path.join(os.path.dirname(BASE_DIR), '.env')
+dotenv_path = os.path.join(BASE_DIR, '.env')
 load_dotenv(dotenv_path)
 
 
@@ -76,11 +73,10 @@ settings = {
 settings['DATABASES'] = {
     'default': {
         'ENGINE': 'mssql+pymssql',
-        'HOST': 's500devsql01.magazineluiza.intranet',
-        'NAME': 'dbmagazine_xp',
-        'USER': 'devfcamara',
-        'PASSWORD': 'DEVFCAMARA',
-        'PORT': 1433
+        'HOST': os.getenv('DEFAULT_HOST'),
+        'NAME': os.getenv('DEFAULT_NAME'),
+        'USER': os.getenv('DEFAULT_USER'),
+        'PASSWORD': os.getenv('DEFAULT_PASSWORD'),
+        'PORT': os.getenv('DEFAULT_PORT')
     }
 }
-

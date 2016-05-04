@@ -6,4 +6,3 @@ urls = [
     url(r'', CustomerHandler.as_list()),
     url(r'\/(?P<pk>[\d]+)', CustomerHandler.as_detail()),
 ]
-
