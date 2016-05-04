@@ -1,7 +1,8 @@
 {
     "project_name": "project_name",
     "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_') }}",
+    "description": "description",
     "version": "0.1.0",
-    "author_name": "Your name",
-    "email": "email"
+    "author": "name",
+    "repo": "repo"
 }

@@ -1,6 +1,8 @@
+{% raw %}
 - name: ensure nginx is installed
   apt: name=nginx state=latest install_recommends=yes
   sudo: true
 
 - name: copy nginx.cnf to /etc/nginx/conf.d
-  template: name=nginx.cnf.j2 dest=/etc/nginx/conf.d/{{ project_name }}.conf mode=0600
+  template: name=nginx.cnf.j2 dest=/etc/nginx/conf.d/{{project_name}}.conf mode=0600
+{% endraw %}
