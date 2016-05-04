@@ -1,4 +1,6 @@
+{% raw %}
 become_method: sudo
 
 project_name: {{project_name}}
-project_path: /{{ system_user }}/apps/{{ project_name }}/app
+project_path: /{{ system_user }}/apps/{{ cookiecutter.project_name }}/app
+{% endraw %}

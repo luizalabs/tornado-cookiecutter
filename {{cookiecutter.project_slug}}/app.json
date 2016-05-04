@@ -1,5 +1,6 @@
 {
-  "name": "tornado-boilerplate",
-  "version": "0.0.1",
-  "description": ""
+  "name": "{{ cookiecutter.project_name }}",
+  "version": "{{ cookiecutter.version }}",
+  "description": "{{ cookiecutter.description }}",
+  "repo": "{{ cookiecutter.repo }}"
 }

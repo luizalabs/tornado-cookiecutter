@@ -1,5 +1,7 @@
+{% raw %}
 [program:{{ project_name }}]
 command=/usr/bin/python3 {{ project_path }}/{{ project_name }}/wsgi.py
 redirect_stderr=true
 stdout_logfile=/var/log/{{ project_path }}.log
 stdout_logfile_maxbytes=100MB
+{% endraw %}
