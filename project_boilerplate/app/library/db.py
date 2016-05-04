@@ -99,11 +99,12 @@ class Base(object):
         else:
             raise NotFound()
 
-    def save(self):
+    def save(self, commit=True):
         session = self.session()
-        if session.id:
+        if not session.id:
             session.add(self)
-        session.commit()
+        if commit:
+            session.commit()
 
     def delete(self):
         session = self.session()

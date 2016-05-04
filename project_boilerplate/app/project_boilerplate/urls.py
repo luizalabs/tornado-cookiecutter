@@ -10,8 +10,7 @@ from project_boilerplate.core.views import HomeHandler
 urls = [
     url(r"/", HomeHandler),
     url(r"/static/(.*)", web.StaticFileHandler, {"path": settings.get('static_path')}),
+    include(r"/healthcheck", "project_boilerplate.core.urls"),
+    include(r"/customers", "project_boilerplate.customers.urls")
 ]
-
-urls += include(r"/healthcheck", "project_boilerplate.core.urls")
-urls += include(r"/customers", "project_boilerplate.customers.urls")
 

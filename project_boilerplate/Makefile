@@ -1,11 +1,14 @@
 clean:
-	@rm -rf **/.py && rm -rf **/__pycache__
+	@find . -name "*.pyc" | xargs rm -rf
+	@find . -name "*.pyo" | xargs rm -rf
+	@find . -name "__pycache__" -type d | xargs rm -rf
+	@rm -f .coverage
 
 install-dev:
 	@pip install -r app/requirements/development.txt
 
 test:
-	@python app/manage.py test
+	@py.test app
 
 provision:
 	@ansible 

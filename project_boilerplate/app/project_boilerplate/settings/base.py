@@ -5,9 +5,17 @@ import os.path
 
 import logging
 
+from dotenv import load_dotenv 
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# load environment
+dotenv_path = os.path.join(os.path.dirname(BASE_DIR), '.env')
+load_dotenv(dotenv_path)
+
+
+# Tornado settings
 path = lambda root,*a: os.path.join(root, *a)
 
 settings = {
@@ -52,7 +60,7 @@ settings = {
     'template_path': path(BASE_DIR, "templates"),
 
     # static_path: Directory from which static files will be served.
-    'static_path': path(BASE_DIR, "static"),
+    'static_path': path(os.path.dirname(BASE_DIR), "static"),
 
     # static_url_prefix: Url prefix for static files, defaults to "/static/".
     'static_url_prefix': '/static/',
@@ -62,5 +70,16 @@ settings = {
     # the default tornado.web.StaticFileHandler.
     # static_handler_args, if set, should be a dictionary of keyword arguments
     # to be passed to the handler's initialize method.
+}
+
+settings['DATABASES'] = {
+    'default': {
+        'ENGINE': 'mssql+pymssql',
+        'HOST': 's500devsql01.magazineluiza.intranet',
+        'NAME': 'dbmagazine_xp',
+        'USER': 'devfcamara',
+        'PASSWORD': 'DEVFCAMARA',
+        'PORT': 1433
+    }
 }
 

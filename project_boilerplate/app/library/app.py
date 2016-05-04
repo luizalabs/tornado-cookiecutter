@@ -9,6 +9,7 @@ from project_boilerplate.settings import settings
 from project_boilerplate.urls import urls
 
 
+# define port
 define("port", default=8888, help="run on the given port", type=int)
 tornado.options.parse_command_line()
 
@@ -19,7 +20,7 @@ class Application(tornado.web.Application):
 
 
 def make_app():
-    tornado.options.parse_command_line()
+    # tornado.options.parse_command_line()
     app = Application()
     return app
 
@@ -44,3 +45,4 @@ def get_server_application():
 
 if __name__ == '__main__':
     run()
+
