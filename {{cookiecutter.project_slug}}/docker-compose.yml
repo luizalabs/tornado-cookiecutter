@@ -1,0 +1,9 @@
+app:
+    build: ./compose/app/
+    volumes:
+        - "./app:/app"
+    ports:
+        - "8888:8888"
+
+nginx:
+    build: ./compose/nginx

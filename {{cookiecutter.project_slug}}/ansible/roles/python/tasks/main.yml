@@ -1,0 +1,12 @@
+- name: ensure python3 is installed
+  apt: name=python3-dev state=present
+  sudo: yes
+
+- name: ensure python3-setuptools is installed
+  apt: name=python3-setuptools state=latest
+  sudo: yes
+
+- name: ensure python3-pip is installed
+  apt: name=python3-pip state=latest
+  sudo: yes
+

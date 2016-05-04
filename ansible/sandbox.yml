@@ -1,8 +1,0 @@
-- hosts: sandbox
-- roles:
-  - common
-  - python
-  - app
-  - uwsgi
-  - supervisor
-  - nginx

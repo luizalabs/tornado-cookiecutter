@@ -1,8 +1,0 @@
-- hosts: production
-- roles:
-  - common
-  - python
-  - app
-  - uwsgi
-  - supervisor
-  - nginx

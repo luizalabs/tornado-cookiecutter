@@ -1,6 +1,0 @@
-cx-Oracle==5.2.1
-marshmallow==2.7.1
-pymssql==2.1.2
-restless==2.0.1
-SQLAlchemy==1.0.12
-tornado==4.3

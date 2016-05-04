@@ -1,0 +1,8 @@
+- hosts: inventory/production
+- roles:
+  - common
+  - python
+  - app
+  - uwsgi
+  - supervisor
+  - nginx

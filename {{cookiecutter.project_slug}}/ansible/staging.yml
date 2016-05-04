@@ -1,0 +1,7 @@
+- hosts: inventory/staging
+- roles:
+  - common
+  - python
+  - app
+  - supervisor
+  - nginx
