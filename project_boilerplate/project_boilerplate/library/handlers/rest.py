@@ -1,6 +1,6 @@
 import socket
 
-from library import app
+from library import app_info
 
 from restless.tnd import TornadoResource as RestlessResource
 from restless.exceptions import MethodNotImplemented 
@@ -37,9 +37,9 @@ class MetaMixin(object):
         # if data is object count always be 1
         count = len(data) if isinstance(data, list) else 1
         meta = {
-            'name': app.get('name'),
+            'name': app_info('name'),
             'server': socket.gethostbyname(socket.gethostname()),
-            'version': app.get('version'),
+            'version': app_info('version'),
             'recordCount': count 
         }
         return meta

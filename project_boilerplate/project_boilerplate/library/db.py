@@ -7,7 +7,7 @@ from sqlalchemy.ext.declarative import declared_attr
 
 from sqlalchemy.orm.exc import NoResultFound
 
-from project_boilerplate.settings import settings 
+from library.conf import settings 
 
 
 class Engine(object):

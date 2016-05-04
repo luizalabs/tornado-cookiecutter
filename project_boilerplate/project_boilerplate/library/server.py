@@ -1,28 +1,15 @@
-import sys
+import tornado.options
 
-import tornado.ioloop
-import tornado.web
+from .app import make_app
+
 from tornado.options import options
 from tornado.options import define
-
-from project_boilerplate.settings import settings
-from project_boilerplate.urls import urls
 
 
 # define port
 define("port", default=8888, help="run on the given port", type=int)
 tornado.options.parse_command_line()
 
-
-class Application(tornado.web.Application):
-    def __init__(self):
-        tornado.web.Application.__init__(self, urls, **settings)
-
-
-def make_app():
-    # tornado.options.parse_command_line()
-    app = Application()
-    return app
 
 def run():
     app = make_app()
@@ -45,4 +32,3 @@ def get_server_application():
 
 if __name__ == '__main__':
     run()
-

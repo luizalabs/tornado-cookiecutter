@@ -5,14 +5,14 @@ clean:
 	@rm -f .coverage
 
 install-dev:
-	@pip install -r app/requirements/development.txt
+	@pip install -r project_boilerplate/requirements/development.txt
 
 test:
-	@py.test app
+	@py.test project_boilerplate
 
 provision:
 	@ansible 
 
 runserver:
-	 @python app/manage.py runserver
+	 @python project_boilerplate/manage.py runserver
 
