@@ -2,7 +2,7 @@ from tornado import gen
 
 from restless.preparers import FieldsPreparer
 
-from contrib.handlers import RestHandler 
+from contrib.handlers import RestHandler
 
 
 class HealthcheckHandler(RestHandler):
@@ -12,5 +12,4 @@ class HealthcheckHandler(RestHandler):
 
     @gen.coroutine
     def list(self):
-        return [{'message': 'Believe I\'m a human'} ] 
-
+        return [{'message': 'Believe I\'m a human'}]

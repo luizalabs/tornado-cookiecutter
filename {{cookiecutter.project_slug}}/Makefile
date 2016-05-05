@@ -5,10 +5,10 @@ clean:
 	@rm -f .coverage
 
 install-dev:
-	@pip install -r {{cookiecutter.project_slug}}/requirements/development.txt
+	@pip install -r requirements/development.txt
 
 test:
-	@py.test -s -x {{cookiecutter.project_slug}}
+	@py.test -sv {{cookiecutter.project_slug}}/apps
 
 provision:
 	@ansible 
@@ -18,4 +18,3 @@ linter:
 
 runserver:
 	 @python {{cookiecutter.project_slug}}/manage.py runserver
-

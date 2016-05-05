@@ -1,12 +1,12 @@
 from tornado import gen
-from contrib.handlers import RestHandler 
+from contrib.handlers import RestHandler
 from restless.preparers import FieldsPreparer
 
-from .models import Customer 
+from .models import Customer
 
 
 class CustomerHandler(RestHandler):
-    model = Customer 
+    model = Customer
     preparer = FieldsPreparer(fields={
         'id': 'id',
         'name': 'name'
@@ -15,10 +15,9 @@ class CustomerHandler(RestHandler):
     @gen.coroutine
     def list(self):
         customers = self.model.query.slice(0, 10)
-        return customers 
+        return customers
 
     @gen.coroutine
     def detail(self, pk):
         customer = self.model.get_or_404(pk)
         return customer
-

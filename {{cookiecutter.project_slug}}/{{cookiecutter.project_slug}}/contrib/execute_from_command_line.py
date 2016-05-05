@@ -2,9 +2,6 @@ import contrib.server
 # import contrib.shell
 import contrib.test
 
-from tornado.options import define
-from tornado.options import options
-
 
 COMMANDS = ['runserver', 'test', 'shell']
 
@@ -51,4 +48,3 @@ class Management(object):
 def execute_from_command_line(args):
     utility = Management(args[1::])
     utility.execute()
-

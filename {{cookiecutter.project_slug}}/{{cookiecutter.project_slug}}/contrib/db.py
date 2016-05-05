@@ -5,9 +5,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker, Session
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.declarative import declared_attr
 
-from sqlalchemy.orm.exc import NoResultFound
-
-from config.settings import settings 
+from config.settings import settings
 
 
 class Engine(object):
@@ -16,7 +14,7 @@ class Engine(object):
 
     def __init__(self, engines):
         self.base_engines = self.clean_engines(engines)
-    
+
     def load(self):
         self.engines = {k: self.parse_engine(k, v)
             for (k, v) in self.base_engines.items()}
@@ -43,14 +41,14 @@ class Engine(object):
 
     def parse_connection_string(self, data):
         if data['ENGINE'] == 'sqlite':
-            return '{ENGINE}://{NAME}'.format(**data)
+            return '{ENGINE}:///{NAME}'.format(**data)
         else:
-            return '{ENGINE}://{USER}:{PASSWORD}@{HOST}:{PORT}/{NAME}'.format(
-                **data) 
+            template = '{ENGINE}://{USER}:{PASSWORD}@{HOST}:{PORT}/{NAME}'
+            return template.format(**data)
 
- 
+
 class BaseSession(Session):
-    session = sessionmaker() 
+    session = sessionmaker()
     engine = Engine(settings['DATABASES'])
 
     def __init__(self, base):
@@ -73,7 +71,7 @@ class BaseQuery(BaseSession):
 
     def query(self):
         Session = scoped_session(self.make_session())
-        return Session.query_property() 
+        return Session.query_property()
 
 
 class Base(object):
@@ -84,11 +82,11 @@ class Base(object):
 
     @declared_attr
     def session(cls):
-        return BaseSession(cls).session() 
+        return BaseSession(cls).session()
 
     @declared_attr
     def query(cls):
-        return BaseQuery(cls).query() 
+        return BaseQuery(cls).query()
 
     @classmethod
     def get_or_404(cls, pk):
@@ -112,4 +110,3 @@ class Base(object):
         session.commit()
 
 Model = declarative_base(cls=Base)
-
