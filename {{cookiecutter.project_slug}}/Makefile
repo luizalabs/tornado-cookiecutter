@@ -18,4 +18,3 @@ linter:
 
 runserver:
 	 @python {{cookiecutter.project_slug}}/manage.py runserver
-
