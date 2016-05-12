@@ -4,7 +4,7 @@ import pytest
 from contrib.app import make_app
 from contrib.db import Model, Engine
 
-from config.settings import settings
+from apps.settings import settings
 
 
 @pytest.fixture

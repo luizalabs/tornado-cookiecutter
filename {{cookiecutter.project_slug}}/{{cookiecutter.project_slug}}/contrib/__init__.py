@@ -1,7 +1,7 @@
 import os
 import json
 
-from config.settings import PROJECT_DIR
+from apps.settings import PROJECT_DIR
 
 
 def app_info(attr):

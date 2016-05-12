@@ -9,7 +9,8 @@ class CustomerHandler(RestHandler):
     model = Customer
     preparer = FieldsPreparer(fields={
         'id': 'id',
-        'name': 'name'
+        'name': 'name',
+        'created_at': 'created_at'
     })
 
     @gen.coroutine
