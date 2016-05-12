@@ -1,3 +1,4 @@
 -r base.txt
 pytest==2.9.1
 pytest-tornado==0.4.5
+mixer==5.5.7

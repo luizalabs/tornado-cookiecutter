@@ -1,8 +1,7 @@
 import tornado.ioloop
 import tornado.web
 
-from config.settings import settings
-
+from apps.settings import settings
 from apps.urls import urls
 
 

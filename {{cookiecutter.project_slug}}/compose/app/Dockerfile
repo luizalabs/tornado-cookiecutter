@@ -2,8 +2,8 @@ FROM python:3.5.1
 
 ENV PYTHONUNBUFFERED 1
 
-COPY ../.../app/requirements /app/requirements
+COPY ../.../requirements /src/requirements
 
-RUN pip install -r /app/requirements/production.txt
+RUN pip install -r /src/requirements/production.txt
 
 ENTRYPOINT ["entrypoint.sh"]

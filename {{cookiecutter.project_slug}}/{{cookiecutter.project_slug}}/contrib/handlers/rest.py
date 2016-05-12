@@ -25,13 +25,17 @@ class PaginationMixin(object):
     def paginate(self, qs):
         self.objects = qs.paginate(self.limit, self.offset)
 
-    @property
     def links(self):
-        pass
+        return { 'next': 1 }
+
+    def wrap_list_response(self, data):
+        response = super(PaginationMixin, self).wrap_list_response(data)
+        response['links'] = self.links()
+
+        return response
 
 
 class MetaMixin(object):
-    meta = True
 
     def meta_context(self, data):
         # if data is object count always be 1
@@ -40,37 +44,32 @@ class MetaMixin(object):
             'name': app_info('name'),
             'server': socket.gethostbyname(socket.gethostname()),
             'version': app_info('version'),
-            'recordCount': count
+            'record_count': count
         }
         return meta
 
+    def wrap_list_response(self, data):
+        response = super(MetaMixin, self).wrap_list_response(data)
 
-class RestHandler(MetaMixin, RestlessResource):
-    links = None
-
-    def initialize(self):
-        print(self.headers)
-
-    def default_return(self, data):
-        """ Default object return
-        """
-        response = {}
-
-        if isinstance(data, list):
-            response['objects'] = data
-        else:
-            response['object'] = self.preparer.prepare(data)
-
-        if self.meta:
-            response['meta'] = self.meta_context(data)
-
-        if self.links and isinstance(self.links, dict):
-            response['links'] = self.links
-
+        response['meta'] = self.meta_context(data)
         return response
 
-    def wrap_list_response(self, data):
-        return self.default_return(data)
+    def wrap_object_response(self, data):
+        response = {
+            'object': data, 
+            'meta': self.meta_context(data) 
+        }
+        return response
+
+
+class RestHandler(MetaMixin, RestlessResource):
+
+    def wrap_object_response(self, data):
+        response = super(RestHandler, self).wrap_object_response(data)
+        return response 
 
     def serialize_detail(self, data):
-        return self.default_return(data)
+        serialize = super(RestHandler, self).serialize_detail(data)
+
+        final_data = self.serializer.deserialize(serialize)
+        return self.wrap_object_response(final_data)

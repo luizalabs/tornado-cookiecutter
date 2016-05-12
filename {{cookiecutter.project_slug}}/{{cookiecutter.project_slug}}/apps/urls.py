@@ -1,8 +1,9 @@
 from tornado import web
 from tornado.web import URLSpec as url
+
 from contrib.urls import include
 
-from config.settings import settings
+from .settings import settings
 
 from .core.views import HomeHandler
 

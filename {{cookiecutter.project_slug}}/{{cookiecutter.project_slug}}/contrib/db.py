@@ -5,7 +5,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker, Session
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.declarative import declared_attr
 
-from config.settings import settings
+from apps.settings import settings
 
 
 class Engine(object):
@@ -87,6 +87,10 @@ class Base(object):
     @declared_attr
     def query(cls):
         return BaseQuery(cls).query()
+
+    @classmethod
+    def create_db(cls):
+        pass
 
     @classmethod
     def get_or_404(cls, pk):
