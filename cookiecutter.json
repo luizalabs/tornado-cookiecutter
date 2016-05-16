@@ -1,8 +1,10 @@
 {
     "project_name": "",
     "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_') }}",
+    "short_description": "",
     "description": "",
     "version": "0.1.0",
     "author": "",
-    "repo": ""
+    "repo": "",
+    "travis_url": "luizalabs/{{ cookiecutter.project_name.lower()|replace(' ', '-')|replace('_', '-') }}"
 }
