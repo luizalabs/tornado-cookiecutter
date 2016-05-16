@@ -1,1 +1,1 @@
-web: python {{cookiecutter.project_slug}}/config/wsgi.py
+web: python {{cookiecutter.project_slug}}/server.py

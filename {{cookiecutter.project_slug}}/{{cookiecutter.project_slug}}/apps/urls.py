@@ -3,15 +3,15 @@ from tornado.web import URLSpec as url
 
 from contrib.urls import include
 
-from .settings import settings
+from settings import settings
 
-from .core.views import HomeHandler
+from apps.core.views import HomeHandler
 
 
 urls = [
     url(r"/", HomeHandler),
     url(r"/static/(.*)", web.StaticFileHandler,
-        {"path": settings.get('static_path')}),
+        {"path": settings.STATIC_ROOT})
 ]
 
 urls += include(r"/healthcheck", "apps.core.urls")

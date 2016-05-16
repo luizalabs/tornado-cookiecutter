@@ -1,6 +1,8 @@
 from tornado import gen
-from contrib.handlers import RestHandler
+
 from restless.preparers import FieldsPreparer
+
+from contrib.handlers import RestHandler
 
 from .models import Customer
 
@@ -19,6 +21,6 @@ class CustomerHandler(RestHandler):
         return customers
 
     @gen.coroutine
-    def detail(self, pk):
-        customer = self.model.get_or_404(pk)
+    def detail(self, id):
+        customer = self.model.get_or_404(id)
         return customer

@@ -1,5 +1,7 @@
 from contrib.db import Model
-from sqlalchemy import Column, String, Integer, Date
+
+from sqlalchemy import Column, ForeignKey, String, Integer, Date
+from sqlalchemy.orm import relationship
 
 
 class Customer(Model):
