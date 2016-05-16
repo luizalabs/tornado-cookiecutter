@@ -126,10 +126,12 @@ Resolving deltas: 100% (192/192), done.
 Checking connectivity... done.
 project_name []:
 project_slug []: # this field is not required, because it is generate based at a project_name
+short_description []:
 description []: # short description to your project
 version [0.1.0]:
 author []:
 repo []:
+travis_url [luizalabs/]:
 ```
 
 ## Settings ##

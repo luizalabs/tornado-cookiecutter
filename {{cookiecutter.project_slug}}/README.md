@@ -1,4 +1,4 @@
-{{ set sanitize_name=cookiecutter.project_name.lower()|replace(' ', '-')|replace('_', '-') }}
+{% set sanitize_name=cookiecutter.project_name.lower()|replace(' ', '-')|replace('_', '-') %}
 # {{cookiecutter.project_name}}
 > {{cookiecutter.short_description}}
 
