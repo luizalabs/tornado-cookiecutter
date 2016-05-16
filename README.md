@@ -1,4 +1,4 @@
-Tornado Cookiecutter 
+Tornado Cookiecutter
 ===================
 
 This is a quick cookiecutter to start building apps with Tornado.
@@ -112,7 +112,9 @@ familar with it. This is how it looks -
 ## Create project ##
 
 Before create your project please install cookiecutter
-```sh $ pip install cookiecutter ```
+```sh
+pip install cookiecutter
+```
 
 With cookiecutter installed make your project
 ```sh
