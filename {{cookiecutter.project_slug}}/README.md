@@ -1,3 +1,5 @@
+{{ set sanitize_name=cookiecutter.project_name.lower()|replace(' ', '-')|replace('_', '-') }}
+
 # {{cookiecutter.project_name}}
 > {{cookiecutter.short_description}}
 
@@ -24,7 +26,7 @@ Alguns exemplos motivamentes e úteis sobre como seu projeto pode ser utilizado.
 Crie e ative um ambiente virtual
 
 ```sh
-mkvirtualenv {{cookiecutter.project_sanitize_name}}
+mkvirtualenv {{sanitize_name}}
 ```
 
 ```sh
@@ -32,7 +34,7 @@ make install-dev
 npm test
 ```
 
-## Changelog 
+## Changelog
 
 * 0.2.1
     * MUDANÇA: Atualização de docs (código do módulo permanece inalterado)
