@@ -1,3 +1,4 @@
+{{ set sanitize_name=cookiecutter.project_name.lower()|replace(' ', '-')|replace('_', '-') }}
 # {{cookiecutter.project_name}}
 > {{cookiecutter.short_description}}
 
@@ -9,10 +10,14 @@
 
 ## Instalação
 
-OS X & Linux:
+**Dependências**
+
+* Python3
+
+Linux (debian):
 
 ```sh
-npm install my-crazy-module --save
+apt-get install $(cat requirements.apt)
 ```
 
 ## Exemplo de uso
@@ -21,15 +26,40 @@ Alguns exemplos motivamentes e úteis sobre como seu projeto pode ser utilizado.
 
 ## Configuração para Desenvolvimento
 
-Crie e ative um ambiente virtual
-
+Crie e ative um ambiente virtual no diretório raiz do projeto
 ```sh
 mkvirtualenv {{cookiecutter.project_slug}}
 ```
 
+Configure as variáveis de ambiente
+```sh
+cd {{cookiecutter.project_slug}}
+cp rename-as.env .env
+```
+Edite o arquivo `.env` e incluia as variáveis de ambiente.
+
+Instalação das dependências do projeto
 ```sh
 make install-dev
-npm test
+```
+
+Testes
+```sh
+make test
+```
+
+Servidor local
+```sh
+make runserver
+```
+
+## Deploy
+
+Sandbox
+
+Deploy realizado no Tsuru
+```sh
+make deploy-sandbox
 ```
 
 ## Changelog
@@ -57,3 +87,5 @@ Distribuído sob a licença XYZ. Veja `LICENSE` para mais informações.
 
 [travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
 [travis-url]: https://travis-ci.org/{{cookiecutter.travis_url}}
+[brew]: http://brew.sh/
+[pyenv]: https://github.com/yyuu/pyenv
