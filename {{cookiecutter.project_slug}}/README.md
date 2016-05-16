@@ -1,5 +1,3 @@
-{{ set sanitize_name=cookiecutter.project_name.lower()|replace(' ', '-')|replace('_', '-') }}
-
 # {{cookiecutter.project_name}}
 > {{cookiecutter.short_description}}
 
@@ -26,7 +24,7 @@ Alguns exemplos motivamentes e úteis sobre como seu projeto pode ser utilizado.
 Crie e ative um ambiente virtual
 
 ```sh
-mkvirtualenv {{sanitize_name}}
+mkvirtualenv {{cookiecutter.project_slug}}
 ```
 
 ```sh
@@ -51,7 +49,7 @@ npm test
 
 ## Meta
 
-Seu Nome – [@SeuNome](https://twitter.com/...) – SeuEmail@exemplo.com
+{{cookiecutter.author}}
 
 Distribuído sob a licença XYZ. Veja `LICENSE` para mais informações.
 
