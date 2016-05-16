@@ -8,9 +8,9 @@ import tornado.options
 from tornado.options import options
 from tornado.options import define
 
-from apps.urls import urls
-
 from settings import settings
+
+from apps.urls import urls
 
 
 class Application(tornado.web.Application):
@@ -29,38 +29,22 @@ class Application(tornado.web.Application):
         tornado.web.Application.__init__(self, urls, **self.settings)
 
 
+def info(attr):
+   meta = dict()
+   with open(os.path.join(settings.PROJECT_DIR, 'app.json'), 'r') as content:
+       meta = json.load(content)
+
+       info = meta.get(attr)
+       if info:
+           return info
+       else:
+           raise ValueError('App info missing attribute {0} '.format(attr))
+
+
 def make_app():
     app = Application()
     return app
 
 
-# define host and port
-# define("host", default='127.0.0.1', help="run on the given host", type=str)
-# define("port", default=8888, help="run on the given port", type=int)
-# tornado.options.parse_command_line()
-
-
-def run():
-    os.environ.setdefault('TORNADO_SETTINGS_MODULE', 'settings.development')
-
-    app = make_app()
-    app.listen(options.port)
-    message = "Listening server at http://{0}:{1}"
-    print(message.format(options.host, options.port))
-
-    try:
-        tornado.ioloop.IOLoop.instance().start()
-    except KeyboardInterrupt:
-        print("\nStopping server.")
-
-
-def get_server_application():
-    app = make_app()
-    server = tornado.httpserver.HTTPServer(app)
-    server.bind(int(os.getenv('PORT', 8888)))
-    server.start(0)
-    IOLoop.current().start()
-
-
 if __name__ == '__main__':
-    run()
+    make_app()

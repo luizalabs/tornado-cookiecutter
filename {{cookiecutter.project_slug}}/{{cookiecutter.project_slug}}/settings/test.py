@@ -3,7 +3,7 @@ import os
 from .base import * 
 
 
-SQL_ECHO = False
+SQL_ECHO = False 
 
 TEST_DB_PATH = os.path.join(PROJECT_DIR, 'test_db.db')
 

@@ -5,6 +5,14 @@ import app
 from restless.tnd import TornadoResource as RestlessResource
 from restless.exceptions import MethodNotImplemented
 
+from raven import Client
+
+from settings import settings
+
+
+# Sentry Client
+client = Client(settings.SENTRY_DSN)
+
 
 class PaginationMixin(object):
     limit = 20
@@ -36,14 +44,16 @@ class PaginationMixin(object):
 
 
 class MetaMixin(object):
+    """
+    """
 
     def meta_context(self, data):
         # if data is object count always be 1
         count = len(data) if isinstance(data, list) else 1
         meta = {
-            'name': app.app_info('name'),
+            'name': app.info('name'),
             'server': socket.gethostbyname(socket.gethostname()),
-            'version': app.app_info('version'),
+            'version': app.info('version'),
             'record_count': count
         }
         return meta
@@ -62,7 +72,9 @@ class MetaMixin(object):
         return response
 
 
-class RestHandler(MetaMixin, RestlessResource):
+class RestHandler(RestlessResource):
+    """
+    """
 
     def wrap_object_response(self, data):
         response = super(RestHandler, self).wrap_object_response(data)
@@ -73,3 +85,7 @@ class RestHandler(MetaMixin, RestlessResource):
 
         final_data = self.serializer.deserialize(serialize)
         return self.wrap_object_response(final_data)
+
+    def handle_error(self, err):
+        client.captureException()
+        return super(RestHandler, self).handle_error(err)

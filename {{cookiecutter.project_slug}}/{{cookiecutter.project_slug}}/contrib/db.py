@@ -35,7 +35,7 @@ class Engine(object):
         parse_string = self.parse_connection_string(connection_string)
 
         if parse_string:
-            return create_engine(parse_string, echo=False)
+            return create_engine(parse_string, echo=settings.SQL_ECHO)
         else:
             raise ValueError('Connection String not parsed')
 

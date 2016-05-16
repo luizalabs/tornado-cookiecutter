@@ -1,8 +1,7 @@
 import os
-import pytest
-
-# set a test config
 os.environ.setdefault('TORNADO_SETTINGS_MODULE', 'settings.test')
+
+import pytest
 
 from app import make_app
 

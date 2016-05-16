@@ -32,7 +32,7 @@ linter:
 	@flake8 --show-source .
 
 runserver:
-	@python {{cookiecutter.project_slug}}/app.py
+	@python {{cookiecutter.project_slug}}/server.py
 
 deploy-sandbox: Realiza deploy no tsuru-nuvemluiza
 	@tsuru app-deploy . -a {{ cookiecutter.project_name.lower()|replace(' ', '-')|replace('_', '-') }}
