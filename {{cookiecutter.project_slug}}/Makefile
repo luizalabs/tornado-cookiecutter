@@ -1,3 +1,12 @@
+UNAME := $(uname -s)
+
+ifeq ($(UNAME), Linux)
+	OPEN_CMD ?= xdg-open
+endif
+ifeq ($(UNAME), Darwin)
+	OPEN_CMD ?= open
+endif
+
 clean:
 	@find . -name "*.pyc" | xargs rm -rf
 	@find . -name "*.pyo" | xargs rm -rf
@@ -8,13 +17,22 @@ install-dev:
 	@pip install -r requirements/development.txt
 
 test:
-	@py.test -sv {{cookiecutter.project_slug}}/apps
+	@py.test -x -s -v {{cookiecutter.project_slug}}/apps/
+
+test-coverage:
+	@py.test -x -v --cov={{cookiecutter.project_slug}}/apps/ --cov-config=.coveragerc --cov-report=term --cov-report=html --cov-report=xml
+
+open-coverage:
+	$(OPEN_CMD) htmlcov/index.html
 
 provision:
-	@ansible 
+	@ansible
 
 linter:
 	@flake8 --show-source .
 
 runserver:
-	 @python {{cookiecutter.project_slug}}/manage.py runserver
+	@python {{cookiecutter.project_slug}}/app.py
+
+deploy-sandbox: Realiza deploy no tsuru-nuvemluiza
+	@tsuru app-deploy . -a {{ cookiecutter.project_name.lower()|replace(' ', '-')|replace('_', '-') }}

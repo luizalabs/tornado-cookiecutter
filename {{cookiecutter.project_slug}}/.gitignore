@@ -95,5 +95,12 @@ target/
 #Ipython Notebook
 .ipynb_checkpoints
 
+# vim
+*.swp
+
+# sqlite
+**.db
+**.sqlite*
+
 # Environment
 .env

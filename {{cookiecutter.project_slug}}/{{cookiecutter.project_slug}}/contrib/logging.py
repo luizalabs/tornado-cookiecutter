@@ -1,3 +1,4 @@
+import os
 import logging
 
 
@@ -15,9 +16,9 @@ class LoggingHandler(object):
 
     def init_template(self, template):
         return getattr(self, '{0}_handler'.format(template), 'file')
- 
+
     def file_hander(self):
         return ''
- 
+
     def logentries_hander(self):
         return ''

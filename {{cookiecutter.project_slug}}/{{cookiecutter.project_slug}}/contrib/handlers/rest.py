@@ -1,6 +1,6 @@
 import socket
 
-from contrib import app_info
+import app
 
 from restless.tnd import TornadoResource as RestlessResource
 from restless.exceptions import MethodNotImplemented
@@ -26,7 +26,7 @@ class PaginationMixin(object):
         self.objects = qs.paginate(self.limit, self.offset)
 
     def links(self):
-        return { 'next': 1 }
+        return {'next': 1}
 
     def wrap_list_response(self, data):
         response = super(PaginationMixin, self).wrap_list_response(data)
@@ -41,9 +41,9 @@ class MetaMixin(object):
         # if data is object count always be 1
         count = len(data) if isinstance(data, list) else 1
         meta = {
-            'name': app_info('name'),
+            'name': app.app_info('name'),
             'server': socket.gethostbyname(socket.gethostname()),
-            'version': app_info('version'),
+            'version': app.app_info('version'),
             'record_count': count
         }
         return meta
@@ -56,8 +56,8 @@ class MetaMixin(object):
 
     def wrap_object_response(self, data):
         response = {
-            'object': data, 
-            'meta': self.meta_context(data) 
+            'object': data,
+            'meta': self.meta_context(data)
         }
         return response
 
@@ -66,7 +66,7 @@ class RestHandler(MetaMixin, RestlessResource):
 
     def wrap_object_response(self, data):
         response = super(RestHandler, self).wrap_object_response(data)
-        return response 
+        return response
 
     def serialize_detail(self, data):
         serialize = super(RestHandler, self).serialize_detail(data)

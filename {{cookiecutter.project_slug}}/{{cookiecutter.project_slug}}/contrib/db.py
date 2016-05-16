@@ -5,7 +5,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker, Session
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.declarative import declared_attr
 
-from apps.settings import settings
+from settings import settings
 
 
 class Engine(object):
@@ -17,7 +17,7 @@ class Engine(object):
 
     def load(self):
         self.engines = {k: self.parse_engine(k, v)
-            for (k, v) in self.base_engines.items()}
+                        for (k, v) in self.base_engines.items()}
 
     def clean_engines(self, engines):
         if 'default' not in engines:
@@ -35,32 +35,29 @@ class Engine(object):
         parse_string = self.parse_connection_string(connection_string)
 
         if parse_string:
-            return create_engine(parse_string)
+            return create_engine(parse_string, echo=False)
         else:
             raise ValueError('Connection String not parsed')
 
     def parse_connection_string(self, data):
         if data['ENGINE'] == 'sqlite':
-            return '{ENGINE}:///{NAME}'.format(**data)
+            conn_string = '{ENGINE}:///{NAME}'
         else:
-            template = '{ENGINE}://{USER}:{PASSWORD}@{HOST}:{PORT}/{NAME}'
-            return template.format(**data)
+            conn_string = '{ENGINE}://{USER}:{PASSWORD}@{HOST}:{PORT}/{NAME}'
+        return conn_string.format(**data)
 
 
 class BaseSession(Session):
     session = sessionmaker()
-    engine = Engine(settings['DATABASES'])
+    engine = Engine(settings.DATABASES)
 
     def __init__(self, base):
         self.base = base
-        self.load()
-
-    def load(self):
         self.engine.load()
 
     def make_session(self):
         engine = self.engine.get_engine()
-        return sessionmaker(bind=engine)
+        return sessionmaker(bind=engine, autocommit=False, autoflush=False)
 
     def session(self):
         session = self.make_session()
@@ -80,7 +77,6 @@ class Base(object):
     """
     __engine__ = 'default'
 
-    @declared_attr
     def session(cls):
         return BaseSession(cls).session()
 
@@ -89,8 +85,20 @@ class Base(object):
         return BaseQuery(cls).query()
 
     @classmethod
-    def create_db(cls):
-        pass
+    def create_all(cls):
+        engine = Engine(settings.DATABASES)
+        engine.load()
+
+        for (name, engine) in engine.engines.items():
+            cls.metadata.create_all(engine)
+
+    @classmethod
+    def drop_all(cls):
+        engine = Engine(settings.DATABASES)
+        engine.load()
+
+        for (name, engine) in engine.engines.items():
+            cls.metadata.drop_all(engine)
 
     @classmethod
     def get_or_404(cls, pk):
@@ -103,7 +111,7 @@ class Base(object):
 
     def save(self, commit=True):
         session = self.session()
-        if not session.id:
+        if not self.id:
             session.add(self)
         if commit:
             session.commit()
