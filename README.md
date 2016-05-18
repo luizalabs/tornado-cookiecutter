@@ -2,121 +2,40 @@ Tornado Cookiecutter
 ===================
 
 This is a quick cookiecutter to start building apps with Tornado.
-It has an almost similar organization of a Django project, as most people are
-familar with it. This is how it looks -
 
-    .
-    ├── Makefile
-    ├── Procfile
-    ├── Vagrantfile
-    ├── ansible
-    │   ├── inventory
-    │   │   ├── production
-    │   │   └── staging
-    │   ├── production.yml
-    │   ├── roles
-    │   │   ├── app
-    │   │   │   └── tasks
-    │   │   │       └── main.yml
-    │   │   ├── common
-    │   │   │   └── tasks
-    │   │   │       └── main.yml
-    │   │   ├── nginx
-    │   │   │   ├── tasks
-    │   │   │   │   └── main.yml
-    │   │   │   └── templates
-    │   │   │       └── nginx.cnf.j2
-    │   │   ├── python
-    │   │   │   └── tasks
-    │   │   │       └── main.yml
-    │   │   └── supervisor
-    │   │       ├── tasks
-    │   │       │   └── main.yml
-    │   │       └── templates
-    │   │           └── supervisord.cnf.j2
-    │   ├── staging.yml
-    │   └── vars
-    │       ├── development.yml
-    │       ├── main.yml
-    │       ├── production.yml
-    │       └── sandbox.yml
-    ├── app.json
-    ├── compose
-    │   ├── app
-    │   │   ├── Dockerfile
-    │   │   └── entrypoint.sh
-    │   └── nginx
-    │       ├── Dockerfile
-    │       └── entrypoint.sh
-    ├── docker-compose.yml
-    ├── requirements
-    │   ├── base.txt
-    │   ├── development.txt
-    │   └── production.txt
-    ├── requirements.apt
-    ├── requirements.txt
-    ├── runtime.txt
-    ├── tsuru.yml
-    └── {{cookiecutter.project_slug}}
-        ├── __init__.py
-        ├── apps
-        │   ├── __init__\ .py
-        │   ├── core
-        │   │   ├── __init__.py
-        │   │   ├── api.py
-        │   │   ├── models.py
-        │   │   ├── tests
-        │   │   │   ├── __init__.py
-        │   │   │   └── test_handlers.py
-        │   │   ├── urls.py
-        │   │   └── views.py
-        │   ├── customers
-        │   │   ├── __init__.py
-        │   │   ├── api.py
-        │   │   ├── models.py
-        │   │   ├── tests
-        │   │   │   ├── __init__.py
-        │   │   │   └── test_api.py
-        │   │   ├── urls.py
-        │   │   └── views.py
-        │   ├── server.py
-        │   ├── settings.py
-        │   └── urls.py
-        ├── conftest.py
-        ├── contrib
-        │   ├── __init__.py
-        │   ├── app.py
-        │   ├── db.py
-        │   ├── execute_from_command_line.py
-        │   ├── handlers
-        │   │   ├── __init__.py
-        │   │   ├── exceptions.py
-        │   │   └── rest.py
-        │   ├── logging.py
-        │   ├── server.py
-        │   ├── shell.py
-        │   ├── test.py
-        │   ├── tests
-        │   │   ├── __init__.py
-        │   │   └── db_test.py
-        │   └── urls.py
-        ├── manage.py
-        ├── pytest.ini
-        ├── rename-as.env
-        ├── static
-        │   └── style.css
-        └── templates
-            ├── base.html
-        └── home.html
+## Features
+
+* Tornado 4
+* RESTful handler with Restless
+* SQLAlchemy ORM pre-configured
+* Run tests with pytest
+* API documentattion with Swagger
+* 12factor based settings via python-dotenv
+* Project README template
+* Resource provioning with a ansible
+* Docker support using docker-compose for development and production
+* Procfile and tsuru.yaml dor deploy at Tsuru (Heroku compatible)
+* Work with python 3.4.1+
+* Apps based at Django apps
+
+## Optional Integrations
+
+* Integration with Sentry for error logging
 
 ## Create project ##
 
-Before create your project please install cookiecutter
+Let's pretend you want to create a Tornado Project called "maguire".
+First, get Cookiecutter. It's aewsome.
+
 ```sh
 pip install cookiecutter
 ```
 
-With cookiecutter installed make your project
+Now run it against this repo:
+
+**Warning:** project_slug, path_name must be a valid names of our pattern.
+
+Answer the prompts with yout own desired options. For example:
 ```sh
 $ cookiecutter https://github.com/luizalabs/tornado-cookiecutter.git
 Cloning into 'tornado-cookiecutter'...
@@ -126,14 +45,30 @@ remote: Total 467 (delta 192), reused 467 (delta 192), pack-reused 0
 Receiving objects: 100% (467/467), 53.39 KiB | 0 bytes/s, done.
 Resolving deltas: 100% (192/192), done.
 Checking connectivity... done.
-project_name []:
-project_slug []: # this field is not required, because it is generate based at a project_name
-short_description []:
-description []: # short description to your project
+project_name []: maguire
+project_slug []: maguire# this field is not required, because it is generate based at a project_name
+short_description []: A host description of project README
+description []: Description of project. Use at project README
 version [0.1.0]:
-author []:
+author []: Matheus Oliveira
 repo []:
-travis_url [luizalabs/]:
+travis_url [luizalabs/maguire]:
+```
+Enter the project and take a look around:
+
+```sh
+cd maguire
+ls
+```
+
+Create a git repo and push ir here:
+
+```sh
+git init
+git add .
+git commit -m "first commit"
+git remote add origin git@github.com:luizalabs/cookiecutter.git 
+git push -u origin master
 ```
 
 ## Settings ##
@@ -191,6 +126,7 @@ Showing message when starting and stoping the server
 
 ## TODO
 
-- [] logging
-- [] sentry
-- [] swagger
+- [ ] logging
+- [ ] swagger
+- [ ] ansible
+- [ ] docker
