@@ -15,10 +15,10 @@ from apps.urls import urls
 
 class Application(tornado.web.Application):
     settings = {
-        'debug': bool(settings.DEBUG),
-        'gzip': settings.GZIP,
+        'debug': settings.DEBUG,
+        'gzip': getattr(settings, 'GZIP', False),
         'cookie_secret': settings.SECRET_KEY,
-        'xsrf_cookies': True,
+        'xsrf_cookies': getattr(settings, 'XSRF_COOKIES', False),
         'autoescape': "xhtml_escape",
         'template_path': settings.TEMPLATE_ROOT,
         'static_path': settings.STATIC_ROOT,
@@ -44,7 +44,6 @@ def info(attr):
 def make_app():
     app = Application()
     return app
-
 
 if __name__ == '__main__':
     make_app()

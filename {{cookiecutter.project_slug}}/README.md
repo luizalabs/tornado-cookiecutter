@@ -1,4 +1,3 @@
-{% set sanitize_name=cookiecutter.project_name.lower()|replace(' ', '-')|replace('_', '-') %}
 # {{cookiecutter.project_name}}
 > {{cookiecutter.short_description}}
 
@@ -28,7 +27,7 @@ Alguns exemplos motivamentes e úteis sobre como seu projeto pode ser utilizado.
 
 Crie e ative um ambiente virtual no diretório raiz do projeto
 ```sh
-mkvirtualenv {{cookiecutter.project_slug}}
+mkvirtualenv {{cookiecutter.path_name}}
 ```
 
 Configure as variáveis de ambiente
@@ -48,7 +47,7 @@ Testes
 make test
 ```
 
-Servidor local
+Localserver
 ```sh
 make runserver
 ```
