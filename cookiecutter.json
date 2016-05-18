@@ -7,5 +7,5 @@
     "version": "0.1.0",
     "author": "",
     "repo": "",
-    "travis_url": "luizalabs/{{ path_name }}"
+    "travis_url": "luizalabs/{{ cookiecutter.path_name }}"
 }
