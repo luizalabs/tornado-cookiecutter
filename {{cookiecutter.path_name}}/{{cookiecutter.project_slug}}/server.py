@@ -9,7 +9,7 @@ from tornado.options import define
 from dotenv import load_dotenv
 
 
-# load .env keys
+# load environment
 load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 
 # define host and port

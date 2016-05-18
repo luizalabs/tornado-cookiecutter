@@ -10,9 +10,6 @@ from raven import Client
 from settings import settings
 
 
-# Sentry Client
-client = Client(settings.SENTRY_DSN)
-
 
 class PaginationMixin(object):
     limit = 20
@@ -43,41 +40,72 @@ class PaginationMixin(object):
         return response
 
 
-class MetaMixin(object):
-    """
-    """
+class MetaSchemaMixin(object):
 
-    def meta_context(self, data):
-        # if data is object count always be 1
-        count = len(data) if isinstance(data, list) else 1
-        meta = {
+    def hostname(self, use_hostname=False):
+        hostname = socket.gethostname()
+
+        if use_hostname:
+            return hostname
+    
+        return socket.gethostbyname(hostname)
+
+    def data_count(self, data):
+        count = 0
+
+        if isinstance(data, list):
+            count = len(data)
+        else:
+            count = 1
+        return count
+
+    def meta_schema(self, data):
+        schema = {
             'name': app.info('name'),
-            'server': socket.gethostbyname(socket.gethostname()),
+            'server': self.hostname(),
             'version': app.info('version'),
-            'record_count': count
+            'record_count': self.data_count(data) 
         }
-        return meta
+        return schema
+
+
+class MetaHandlerMixin(MetaSchemaMixin):
+
+    def set_meta(self, data):
+        return self.meta_schema(data)
 
     def wrap_list_response(self, data):
-        response = super(MetaMixin, self).wrap_list_response(data)
+        response = super(MetaHandlerMixin, self).wrap_list_response(data)
 
-        response['meta'] = self.meta_context(data)
+        response['meta'] = self.set_meta(data)
         return response
 
     def wrap_object_response(self, data):
-        response = {
-            'object': data,
-            'meta': self.meta_context(data)
+        response = { 
+            'meta': self.set_meta(data)
         }
         return response
 
 
-class RestHandler(RestlessResource):
+class SentryRestlessMixin(object):
+    sentry_client = Client(settings.SENTRY_DSN)
+
+    def handle_error(self, err):
+        self.sentry_client.captureException()
+        return super(SentryRestlessMixin, self).handle_error(err)
+
+
+class RestHandler(MetaHandlerMixin, SentryRestlessMixin, RestlessResource):
     """
+    Rest resource handler
     """
+    def is_authenticated(self):
+        return True
 
     def wrap_object_response(self, data):
         response = super(RestHandler, self).wrap_object_response(data)
+
+        response['object'] = data
         return response
 
     def serialize_detail(self, data):
@@ -85,7 +113,3 @@ class RestHandler(RestlessResource):
 
         final_data = self.serializer.deserialize(serialize)
         return self.wrap_object_response(final_data)
-
-    def handle_error(self, err):
-        client.captureException()
-        return super(RestHandler, self).handle_error(err)

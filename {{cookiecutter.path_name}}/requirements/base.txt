@@ -1,6 +1,7 @@
 flake8==2.5.4
 pymssql==2.1.2
 python-dotenv==0.5.0
+raven==5.17.0
 restless==2.0.1
 SQLAlchemy==1.0.12
 tornado==4.3

@@ -8,13 +8,11 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = bool(os.getenv('DEBUG', True))
 
-GZIP = True
-
 SQL_ECHO = True
 
 DATABASES = {
     'default': {
-        'ENGINE': 'sqlite',
+        'ENGINE': 'mssql+pymssql',
         'HOST': os.getenv('DEFAULT_HOST'),
         'NAME': os.getenv('DEFAULT_NAME'),
         'USER': os.getenv('DEFAULT_USER'),
