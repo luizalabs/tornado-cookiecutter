@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
 import os
+os.environ.setdefault('TORNADO_MODULE_SETTINGS', 'settings.development')
+
 import readline
 from pprint import pprint
-
-os.environ.setdefault('TORNADO_MODULE_SETTINGS', 'settings.development')
 
 from app import *
 from server import *

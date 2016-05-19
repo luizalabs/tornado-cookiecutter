@@ -8,7 +8,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = bool(os.getenv('DEBUG', True))
 
-SQL_ECHO = True
+SQL_ECHO = False
 
 DATABASES = {
     'default': {

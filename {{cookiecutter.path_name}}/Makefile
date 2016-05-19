@@ -20,7 +20,7 @@ test:
 	@py.test -x -s -v {{cookiecutter.project_slug}}/apps/
 
 test-coverage:
-	@py.test -x -v --cov={{cookiecutter.project_slug}}/apps/ --cov-config=.coveragerc --cov-report=term --cov-report=html --cov-report=xml
+	@py.test -x -s -v --cov={{cookiecutter.project_slug}}/apps/ --cov-config=.coveragerc --cov-report=term --cov-report=html --cov-report=xml
 
 open-coverage:
 	$(OPEN_CMD) htmlcov/index.html
