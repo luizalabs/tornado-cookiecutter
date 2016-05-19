@@ -127,6 +127,5 @@ Showing message when starting and stoping the server
 ## TODO
 
 - [ ] logging
-- [ ] swagger
 - [ ] ansible
 - [ ] docker
