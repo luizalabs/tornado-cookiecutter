@@ -21,9 +21,12 @@ DATABASES = {
     }
 }
 
-TEMPLATE_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'templates')
+TEMPLATE_ROOT = os.path.join(BASE_DIR, 'templates')
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+DOCS_URL = '/docs/'
+DOCS_ROOT = os.path.join(BASE_DIR, 'docs')
 
 SENTRY_DSN = os.getenv('SENTRY_DSN')
