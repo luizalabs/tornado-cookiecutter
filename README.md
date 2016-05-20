@@ -9,7 +9,7 @@ This is a quick cookiecutter to start building apps with Tornado.
 * RESTful handler with Restless
 * SQLAlchemy ORM pre-configured
 * Run tests with pytest
-* API documentattion with Swagger
+* API documentation with Swagger
 * 12factor based settings via python-dotenv
 * Project README template
 * Test-data generator with mixer
