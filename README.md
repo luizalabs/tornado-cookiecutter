@@ -12,6 +12,7 @@ This is a quick cookiecutter to start building apps with Tornado.
 * API documentattion with Swagger
 * 12factor based settings via python-dotenv
 * Project README template
+* Fixtures replacement with mixer
 * Resource provioning with a ansible
 * Docker support using docker-compose for development and production
 * Procfile and tsuru.yaml dor deploy at Tsuru (Heroku compatible)
