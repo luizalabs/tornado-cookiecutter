@@ -20,10 +20,8 @@ class CustomerHandler(RestHandler):
 
     @gen.coroutine
     def list(self):
-        customers = session.query(self.model).slice(0, 10)
-        return customers
+        return session.query(Customer).slice(0, 10)
 
     @gen.coroutine
     def detail(self, id):
-        customer = get_or_404(self.model, id)
-        return customer
+        return get_or_404(self.model, id)

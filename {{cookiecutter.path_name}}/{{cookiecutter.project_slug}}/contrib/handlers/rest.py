@@ -10,14 +10,9 @@ from raven import Client
 from settings import settings
 
 
-
 class PaginationMixin(object):
     limit = 20
     offset = 1
-
-    def __init__(self):
-        self.limit = int(self.request.args.get('limit', self.limit))
-        self.offset = int(self.request.args.get('offset', self.offset))
 
     def get_queryset(self):
         return MethodNotImplemented()
@@ -28,10 +23,11 @@ class PaginationMixin(object):
         return self.objects
 
     def paginate(self, qs):
-        self.objects = qs.paginate(self.limit, self.offset)
+        self.objects = qs.limit(self.limit).offset(self.offset)
 
     def links(self):
-        return {'next': 1}
+        links = {}
+        return links
 
     def wrap_list_response(self, data):
         response = super(PaginationMixin, self).wrap_list_response(data)
@@ -47,7 +43,7 @@ class MetaSchemaMixin(object):
 
         if use_hostname:
             return hostname
-    
+
         return socket.gethostbyname(hostname)
 
     def data_count(self, data):
@@ -64,7 +60,7 @@ class MetaSchemaMixin(object):
             'name': app.info('name'),
             'server': self.hostname(),
             'version': app.info('version'),
-            'record_count': self.data_count(data) 
+            'record_count': self.data_count(data)
         }
         return schema
 
@@ -81,7 +77,7 @@ class MetaHandlerMixin(MetaSchemaMixin):
         return response
 
     def wrap_object_response(self, data):
-        response = { 
+        response = {
             'meta': self.set_meta(data)
         }
         return response
@@ -95,7 +91,11 @@ class SentryRestlessMixin(object):
         return super(SentryRestlessMixin, self).handle_error(err)
 
 
-class RestHandler(MetaHandlerMixin, SentryRestlessMixin, RestlessResource):
+class BaseHandlerMixin(MetaHandlerMixin, SentryRestlessMixin, PaginationMixin):
+    pass
+
+
+class RestHandler(BaseHandlerMixin, RestlessResource):
     """
     Rest resource handler
     """

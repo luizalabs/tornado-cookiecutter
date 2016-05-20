@@ -3,11 +3,8 @@ from restless.exceptions import NotFound
 from .session import session
 
 
-def get_or_404(_model, id, using=None):
-    if using:
-         obj = session.using(bind).query(_model).get(id)
-    else:
-        obj = session.query(_model).get(id)
+def get_or_404(_model, id):
+    obj = session.query(_model).get(id)
 
     if obj:
         return obj

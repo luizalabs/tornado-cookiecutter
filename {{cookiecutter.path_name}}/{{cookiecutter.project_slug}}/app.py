@@ -5,9 +5,6 @@ import tornado.ioloop
 import tornado.web
 import tornado.options
 
-from tornado.options import options
-from tornado.options import define
-
 from settings import settings
 
 from apps.urls import urls
@@ -38,7 +35,8 @@ def info(attr):
        if info:
            return info
        else:
-           raise ValueError('App info missing attribute {0} '.format(attr))
+           raise ValueError(
+               'App info missing attribute {0} '.format(attr))
 
 
 def make_app():

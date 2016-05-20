@@ -4,13 +4,10 @@ import tornado.httpserver
 import tornado.options
 
 from tornado.options import options
-from tornado.options import define 
+from tornado.options import define
 
 from dotenv import load_dotenv
 
-
-# load environment
-load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 
 # define host and port
 define("host", default='127.0.0.1', help="run on the given host", type=str)
