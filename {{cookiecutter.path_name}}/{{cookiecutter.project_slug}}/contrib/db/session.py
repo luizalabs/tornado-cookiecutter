@@ -11,14 +11,19 @@ engine.load()
 
 
 class RoutingSession(Session):
-    _name = 'default'
+    _name = None
 
-    def get_bind(self, bind=None, clause=None):
-        return engine.get_engine(self._name)
+    def get_bind(self, mapper=None, clause=None):
+        if self._name:
+            return engine.get_engine(self._name)
+        elif mapper and mapper.class_.__bind__:
+            return engine.get_engine(mapper.class_.__bind__)
+        else:
+            return engine.get_engine('default')
 
-    def using(self, bind):
+    def using(self, name):
         s = RoutingSession()
-        s._name = bind
+        s._name = name
         return s
 
 

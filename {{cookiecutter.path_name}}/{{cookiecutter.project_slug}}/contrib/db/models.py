@@ -1,6 +1,4 @@
-from sqlalchemy import Column, Integer
 from sqlalchemy import MetaData
-from sqlalchemy.orm import scoped_session, sessionmaker, Session
 from sqlalchemy.ext.declarative import declarative_base
 
 from settings import settings
@@ -10,12 +8,7 @@ from .engine import Engine
 from .session import session
 
 
-class Base(object):
-
-    id = Column(Integer, primary_key=True)
-
-
-BaseDeclarative = declarative_base(cls=Base)
+BaseDeclarative = declarative_base()
 
 
 class Model(BaseDeclarative):
@@ -44,18 +37,20 @@ class Model(BaseDeclarative):
             session.commit()
             session.flush()
 
+        return self
+
     def delete(self):
         """
-        Alias to delete record 
-        This method work with a self instance of object 
+        Alias to delete record
+        This method work with a self instance of object
         and get a ID attribute automatically
         Example:
             palmito = Food.query.get(1)
             palmito.delete()
         """
         session.delete(self)
-        session.commit()
         session.flush()
+        session.commit()
 
     @classmethod
     def create_all(cls):
