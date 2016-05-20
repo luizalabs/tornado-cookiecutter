@@ -12,9 +12,9 @@ SQL_ECHO = False
 
 DATABASES = {
     'default': {
-        'ENGINE': 'mssql+pymssql',
+        'ENGINE': 'sqlite',
         'HOST': os.getenv('DEFAULT_HOST'),
-        'NAME': os.getenv('DEFAULT_NAME'),
+        'NAME': 'default.db',
         'USER': os.getenv('DEFAULT_USER'),
         'PASSWORD': os.getenv('DEFAULT_PASSWORD'),
         'PORT': os.getenv('DEFAULT_PORT')
