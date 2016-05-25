@@ -38,4 +38,4 @@ runserver:
 	@python {{cookiecutter.project_slug}}/server.py
 
 deploy-sandbox: Realiza deploy no tsuru-nuvemluiza
-	@tsuru app-deploy . -a {{ cookiecutter.path_name }}
+	@tsuru app-deploy . -a {{cookiecutter.path_name}}
