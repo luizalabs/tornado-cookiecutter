@@ -18,10 +18,11 @@ tornado.options.parse_command_line()
 def main():
     import app
 
+    port = os.getenv('PORT', options.port)
     server = tornado.httpserver.HTTPServer(app.make_app())
-    server.listen(options.port)
+    server.listen(port)
     message = "Listening server at http://{0}:{1}"
-    print(message.format(options.host, options.port))
+    print(message.format(options.host, port))
 
     try:
         tornado.ioloop.IOLoop.instance().start()
