@@ -1,5 +1,6 @@
 import os
 import json
+import codecs
 
 import tornado.ioloop
 import tornado.web
@@ -28,7 +29,7 @@ class Application(tornado.web.Application):
 
 def info(attr):
    meta = dict()
-   with open(os.path.join(settings.PROJECT_DIR, 'app.json'), 'r') as content:
+   with codecs.open(os.path.join(settings.PROJECT_DIR, 'app.json'), 'r', encoding='UTF-8') as content:
        meta = json.load(content)
 
        info = meta.get(attr)
