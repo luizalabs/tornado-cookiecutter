@@ -1,7 +1,8 @@
 Tornado Cookiecutter
 ===================
 
-This is a quick cookiecutter to start building apps with Tornado.
+This repository is no longer maintained.
+
 
 ## Features
 
